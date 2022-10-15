@@ -1,47 +1,47 @@
-let body = document.body;
-let h2 = document.querySelector('h2');
-let input = document.getElementById('input-field');
-let ul = document.getElementById('items-to-shop');
+    let body = document.body;
+    let h2 = document.querySelector('h2');
+    let input = document.getElementById('input-field');
+    let ul = document.getElementById('items-to-shop');
+    let lis = document.querySelectorAll('li');
+    let list = Object.values(lis);
+    let button = document.getElementById('btn');
+
+    let updatedList = [];
+    for (let i = 0; i < list.length; i++){
+        updatedList.push(list[i].innerText);
+        console.log(updatedList);
+    }
 
 
-let button = document.getElementById('btn');
-button.addEventListener('click', () => {
-    let listItems = document.querySelectorAll('li');
-    if (input.value !== ""){
-        let found = false;
-        listItems.forEach(listitem => {
-            if (listitem.innerText === input.value){
-                found = true;
-                listitem.innerText = `${listitem.innerText} x2`
-                input.value = '';
+    button.addEventListener('click', () => {
+        
+        
+        if (input.value !== ""){
+            let found = false;
+            lis.forEach(li => {
+                if (li.innerText === input.value){
+                    found = true;
+                    li.innerText = `${li.innerText} x2`
+                    input.value = '';
+                }
+            });
+            if (found){
+                // alert('Item already exists')
             }
-        });
-        if (found){
-            // alert('Item already exists')
+            else{
+                let newListItem = document.createElement('li');
+                let listContent = document.createTextNode(input.value);
+
+                // body.append(ul);
+                ul.append(newListItem);
+                newListItem.append(listContent);
+                updatedList.push(input.value);
+                console.log(updatedList);
+                input.value = '';
+            } 
         }
-        else{
-            let newListItem = document.createElement('li');
-            let listContent = document.createTextNode(input.value);
+    });
 
-            // body.append(ul);
-            ul.append(newListItem);
-            newListItem.append(listContent);
-            input.value = '';
-        } 
-    }
-});
-
-input.addEventListener('keypress', event => {
-    // console.log(event);
-    // let listItems = document.querySelectorAll('li');
-    if ( event.keyCode === 13 && input.value.length > 0){
-        let newListItem = document.createElement('li');
-        let listContent = document.createTextNode(input.value);
-        ul.append(newListItem);
-        newListItem.append(listContent);
-        input.value = '';
-    }
-});
 
 
 
