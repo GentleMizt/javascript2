@@ -2,10 +2,11 @@ let body = document.body;
 let h2 = document.querySelector('h2');
 let input = document.getElementById('input-field');
 let ul = document.getElementById('items-to-shop');
-let listItems = document.querySelectorAll('li');
+
 
 let button = document.getElementById('btn');
 button.addEventListener('click', () => {
+    let listItems = document.querySelectorAll('li');
     if (input.value !== ""){
         let found = false;
         listItems.forEach(listitem => {
@@ -27,6 +28,18 @@ button.addEventListener('click', () => {
             newListItem.append(listContent);
             input.value = '';
         } 
+    }
+});
+
+input.addEventListener('keypress', event => {
+    // console.log(event);
+    // let listItems = document.querySelectorAll('li');
+    if ( event.keyCode === 13 && input.value.length > 0){
+        let newListItem = document.createElement('li');
+        let listContent = document.createTextNode(input.value);
+        ul.append(newListItem);
+        newListItem.append(listContent);
+        input.value = '';
     }
 });
 
