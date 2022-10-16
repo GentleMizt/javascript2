@@ -2,21 +2,17 @@
     let h2 = document.querySelector('h2');
     let input = document.getElementById('input-field');
     let ul = document.getElementById('items-to-shop');
-    let lis = document.querySelectorAll('li');
-    let list = Object.values(lis);
+    
+    // let list = Object.values(lis);
     let button = document.getElementById('btn');
 
-    let updatedList = [];
-    for (let i = 0; i < list.length; i++){
-        updatedList.push(list[i].innerText);
-        console.log(updatedList);
-    }
 
 
     button.addEventListener('click', () => {
         
         
         if (input.value !== ""){
+            let lis = document.querySelectorAll('li');
             let found = false;
             lis.forEach(li => {
                 if (li.innerText === input.value){
@@ -29,14 +25,13 @@
                 // alert('Item already exists')
             }
             else{
+                
                 let newListItem = document.createElement('li');
                 let listContent = document.createTextNode(input.value);
 
-                // body.append(ul);
+               
                 ul.append(newListItem);
                 newListItem.append(listContent);
-                updatedList.push(input.value);
-                console.log(updatedList);
                 input.value = '';
             } 
         }
